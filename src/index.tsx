@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 axios.defaults.baseURL = 'http://localhost:8000/api/admin/';
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <React.StrictMode>

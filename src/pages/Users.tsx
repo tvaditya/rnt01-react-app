@@ -50,15 +50,14 @@ const Users = () => {
                             <TableCell>
                                 <Button variant={"contained"}
                                         color={"primary"}
-                                        href={`users/${user.id}/link`}
+                                        href={`users/${user.id}/links`}
                                 >
                                     View
                                 </Button>
                             </TableCell>
                         </TableRow>
-                    );
-                })};
-
+                    )
+                })}
                 </TableBody>
                 <TableFooter>
                     <TablePagination count={users.length}

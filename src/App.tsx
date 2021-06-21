@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Links from './pages/Links';
 import {RedirectUsers} from "./components/RedirectToUsers";
+import Products from "./pages/products/Products";
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
           <Route path={'/register'} component={Register}/>
           <Route path={'/users'} exact component={Users}/>
           <Route path={'/users/:id/links'} component={Links}/>
+          <Route path={'/products'} component={Products}/>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
 export default App;

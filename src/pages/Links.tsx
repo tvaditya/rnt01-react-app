@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {Link} from "../models/link";
 import Layout from "../components/Layout";
 import {
-    Button,
     Table,
     TableBody,
     TableCell,
@@ -21,9 +20,10 @@ const Links = (props: any) => {
     useEffect(() => {
         (
             async () => {
-                const {data} = await axios.get(`users/${props.match.params.id}/link`);
+                const {data} = await axios.get(`users/${props.match.params.id}/links`);
 
                 setLinks(data);
+                console.log(data);
             }
         )()
     }, []);
@@ -46,12 +46,10 @@ const Links = (props: any) => {
                                 <TableCell>{link.id}</TableCell>
                                 <TableCell>{link.code}</TableCell>
                                 <TableCell>{link.orders.length}</TableCell>
-                                <TableCell>
-                                </TableCell>
+                                <TableCell>{link.orders.reduce((s, o)=> s + o.total, 0)}</TableCell>
                             </TableRow>
-                        );
-                    })};
-
+                        )
+                    })}
                 </TableBody>
                 <TableFooter>
                     <TablePagination count={links.length}

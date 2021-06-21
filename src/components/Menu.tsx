@@ -11,10 +11,15 @@ const Menu = () => {
                             Users
                         </NavLink>
                     </li>
+                    <li className="nav-item">
+                        <NavLink to={'/products'} className="nav-link active" aria-current="page" >
+                            Products
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
         </nav>
-    );
+    )
 };
 
 export default Menu;

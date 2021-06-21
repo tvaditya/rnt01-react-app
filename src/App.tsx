@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Route path={'/'} exact component={RedirectUsers} />
-        <Route path={'/'} component={Users}/>
+        <Route path={'/users'} component={Users}/>
         <Route path={'/login'} component={Login}/>
         <Route path={'/register'} component={Register}/>
       </BrowserRouter>

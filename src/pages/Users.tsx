@@ -2,11 +2,13 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Layout from "../components/Layout";
 import { User } from "../models/users";
-import {Table, TableBody, TableCell, TableHead, TableRow} from "@material-ui/core";
+import {Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow} from "@material-ui/core";
 
 
 const Users = () => {
     const [users, setUsers] = useState<User[]>([])
+    const [page, setPage] = useState(0)
+    const perPage = 10
 
     useEffect(() => {
         (
@@ -30,7 +32,7 @@ const Users = () => {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {users.map(user => {
+                {users.slice(page * perPage, (page + 1) * perPage).map(user => {
                     return (
                         <TableRow key={user.id}>
                             <TableCell>{user.id}</TableCell>
@@ -42,6 +44,14 @@ const Users = () => {
                 })};
 
                 </TableBody>
+                <TableFooter>
+                    <TablePagination count={users.length}
+                                     onChangePage={(e, newPage)=> setPage(newPage)}
+                                     page={page}
+                                     rowsPerPage={perPage}
+                                     rowsPerPageOptions={[]}
+                    />
+                </TableFooter>
             </Table>
         </Layout>
 

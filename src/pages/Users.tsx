@@ -2,43 +2,47 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Layout from "../components/Layout";
 import { User } from "../models/users";
+import {Table, TableBody, TableCell, TableHead, TableRow} from "@material-ui/core";
 
 
 const Users = () => {
     const [users, setUsers] = useState<User[]>([])
 
     useEffect(() => {
-(        async () => {
-            const {data} = await axios.get('ambassador');
+        (
+            async () => {
+                const {data} = await axios.get('ambassadors');
 
-            setUsers(data);
-        })()
-    }, [])
+                setUsers(data);
+            }
+        )()
+    }, []);
+
     return (
         <Layout>
-            <table className="table table-striped table-sm">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
+            <Table>
+                <TableHead>
+                <TableRow>
+                    <TableCell>#</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Email</TableCell>
+                    <TableCell>Actions</TableCell>
+                </TableRow>
+                </TableHead>
+                <TableBody>
                 {users.map(user => {
                     return (
-                        <tr>
-                            <td>{user.id}</td>
-                            <td>{user.first_name} {user.last_name}</td>
-                            <td>{user.email}</td>
-                            <td></td>
-                        </tr>
+                        <TableRow key={user.id}>
+                            <TableCell>{user.id}</TableCell>
+                            <TableCell>{user.first_name} {user.last_name}</TableCell>
+                            <TableCell>{user.email}</TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
                     );
                 })};
 
-                </tbody>
-            </table>
+                </TableBody>
+            </Table>
         </Layout>
 
     );

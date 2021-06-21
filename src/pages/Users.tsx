@@ -2,7 +2,16 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Layout from "../components/Layout";
 import { User } from "../models/users";
-import {Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow} from "@material-ui/core";
+import {
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TablePagination,
+    TableRow
+} from "@material-ui/core";
 
 
 const Users = () => {
@@ -38,7 +47,14 @@ const Users = () => {
                             <TableCell>{user.id}</TableCell>
                             <TableCell>{user.first_name} {user.last_name}</TableCell>
                             <TableCell>{user.email}</TableCell>
-                            <TableCell></TableCell>
+                            <TableCell>
+                                <Button variant={"contained"}
+                                        color={"primary"}
+                                        href={`users/${user.id}/link`}
+                                >
+                                    View
+                                </Button>
+                            </TableCell>
                         </TableRow>
                     );
                 })};

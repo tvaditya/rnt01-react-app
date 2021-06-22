@@ -9,6 +9,7 @@ import {RedirectUsers} from "./components/RedirectToUsers";
 import Products from "./pages/products/Products";
 import ProductForm from "./pages/products/ProductForm";
 import Orders from "./pages/Orders";
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path={'/'} exact component={RedirectUsers}/>
           <Route path={'/login'} component={Login}/>
           <Route path={'/register'} component={Register}/>
+          <Route path={'/profile'} component={Profile}/>
           <Route path={'/users'} exact component={Users}/>
           <Route path={'/users/:id/links'} component={Links}/>
           <Route path={'/products'} exact component={Products}/>

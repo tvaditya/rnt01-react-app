@@ -33,7 +33,7 @@ const Profile = (props: any) => {
             email
         });
 
-        props.setUser(data);
+    //    props.setUser(data);
     }
 
     const passwordSubmit = async (e: SyntheticEvent) => {

@@ -1,10 +1,13 @@
 import TextField from '@material-ui/core/TextField';
-import React, {SyntheticEvent, useEffect, useState} from 'react';
+import React, {Dispatch, SyntheticEvent, useEffect, useState} from 'react';
 import Layout from "../components/Layout";
 import {Button} from "@material-ui/core";
 import axios from "axios";
+import {connect} from "react-redux";
+import {User} from "../models/users";
+import {setUser} from "../redux/actions/setUserAction";
 
-const Profile = () => {
+const Profile = (props: any) => {
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -12,18 +15,15 @@ const Profile = () => {
     const [password_confirm, setPasswordConfirm] = useState('')
 
     useEffect(() => {
-        (
-            async () => {
-                const {data} = await axios.get('user');
-
-                setFirstName(data.first_name)
-                setLastName(data.last_name)
-                setEmail(data.email)
-                setPassword(data.password)
-                setPasswordConfirm(data.password_confirm)
+            {
+                setFirstName(props.user.first_name)
+                setLastName(props.user.last_name)
+                setEmail(props.user.email)
+                // setPassword(data.password)
+                // setPasswordConfirm(data.password_confirm)
             }
-        )();
-    }, []);
+
+    }, [props.user]);
 
     const infoSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
@@ -31,8 +31,9 @@ const Profile = () => {
             first_name,
             last_name,
             email
-        })
+        });
 
+        props.setUser(data);
     }
 
     const passwordSubmit = async (e: SyntheticEvent) => {
@@ -89,4 +90,10 @@ const Profile = () => {
     )
 }
 
-export default Profile;
+export default connect(
+    (state: { user: User }) => ({
+        user: state.user
+    }),
+    (dispatch: Dispatch<any>) => ({
+        setUser: (user: User) => dispatch(setUser(user))
+    }))(Profile);
